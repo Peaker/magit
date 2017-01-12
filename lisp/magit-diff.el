@@ -2547,14 +2547,14 @@ or a ref which is not a branch, then it inserts nothing."
                                magit-buffer-revision)
       (magit-insert-revision-gravatars magit-buffer-revision beg))
     (when magit-revision-insert-related-refs
-      (dolist (parent (magit-commit-parents magit-buffer-revision))
-        (magit-insert-section (commit parent)
-          (let ((line (magit-rev-format "%h %s" parent)))
-            (string-match "^\\([^ ]+\\) \\(.*\\)" line)
-            (magit-bind-match-strings (hash msg) line
-              (insert "Parent:     ")
-              (insert (propertize hash 'font-lock-face 'magit-hash))
-              (insert " " msg "\n")))))
+      ;; (dolist (parent (magit-commit-parents magit-buffer-revision))
+      ;;   (magit-insert-section (commit parent)
+      ;;     (let ((line (magit-rev-format "%h %s" parent)))
+      ;;       (string-match "^\\([^ ]+\\) \\(.*\\)" line)
+      ;;       (magit-bind-match-strings (hash msg) line
+      ;;         (insert "Parent:     ")
+      ;;         (insert (propertize hash 'font-lock-face 'magit-hash))
+      ;;         (insert " " msg "\n")))))
       (magit--insert-related-refs
        magit-buffer-revision "--merged" "Merged"
        (eq magit-revision-insert-related-refs 'all))
